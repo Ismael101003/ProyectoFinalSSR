@@ -3,63 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCursoRequest;
+use App\Http\Requests\UpdateCursoRequest;
+use Illuminate\Support\Str;
 
 class CursoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $cursos = Curso::latest()->paginate(10);
+        return view('cursos.index', compact('cursos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('cursos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreCursoRequest $request)
     {
-        //
+        $datos = $request->validated();
+        $datos['slug'] = Str::slug($datos['titulo']);
+        Curso::create($datos);
+        return redirect()->route('cursos.index')->with('success', 'Curso creado con éxito.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Curso $curso)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Curso $curso)
     {
-        //
+        return view('cursos.edit', compact('curso'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Curso $curso)
+    public function update(UpdateCursoRequest $request, Curso $curso)
     {
-        //
+        $datos = $request->validated();
+        $datos['slug'] = Str::slug($datos['titulo']);
+        $curso->update($datos);
+        return redirect()->route('cursos.index')->with('success', 'Curso actualizado correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Curso $curso)
     {
-        //
+        $curso->delete();
+        return redirect()->route('cursos.index')->with('success', 'Curso eliminado.');
     }
 }
