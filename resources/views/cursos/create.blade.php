@@ -1,34 +1,34 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="h4 mb-0 text-dark">
             {{ __('Crear Nuevo Curso') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+    <div class="py-4">
+        <div class="container">
+            <div class="card shadow-sm">
+                <div class="card-body">
                     
                     <form action="{{ route('cursos.store') }}" method="POST">
                         @csrf
                         
-                        <div class="mb-4">
-                            <label for="titulo" class="block text-gray-700">Título del Curso</label>
-                            <input type="text" name="titulo" id="titulo" class="w-full border-gray-300 rounded-md shadow-sm" required>
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título del Curso</label>
+                            <input type="text" name="titulo" id="titulo" class="form-control" required>
                         </div>
 
-                        <div class="mb-4">
-                            <label for="instructor" class="block text-gray-700">Instructor</label>
-                            <input type="text" name="instructor" id="instructor" class="w-full border-gray-300 rounded-md shadow-sm" required>
+                        <div class="mb-3">
+                            <label for="instructor" class="form-label">Instructor</label>
+                            <input type="text" name="instructor" id="instructor" class="form-control" required>
                         </div>
 
-                        <div class="mb-4">
-                            <label for="descripcion" class="block text-gray-700">Descripción</label>
-                            <textarea name="descripcion" id="descripcion" rows="4" class="w-full border-gray-300 rounded-md shadow-sm" required></textarea>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea name="descripcion" id="descripcion" rows="4" class="form-control" required></textarea>
                         </div>
 
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <button type="submit" class="btn btn-primary">
                             Guardar Curso
                         </button>
                     </form>

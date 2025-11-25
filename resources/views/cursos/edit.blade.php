@@ -1,43 +1,45 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="h4 mb-0 text-dark">
             {{ __('Editar Curso') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+    <div class="py-4">
+        <div class="container">
+            <div class="card shadow-sm">
+                <div class="card-body">
                     
                     <form action="{{ route('cursos.update', $curso) }}" method="POST">
                         @csrf
-                        @method('PUT') <div class="mb-4">
-                            <label for="titulo" class="block text-gray-700">Título del Curso</label>
+                        @method('PUT') 
+                        
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título del Curso</label>
                             <input type="text" name="titulo" id="titulo" 
                                    value="{{ old('titulo', $curso->titulo) }}"
-                                   class="w-full border-gray-300 rounded-md shadow-sm" required>
+                                   class="form-control" required>
                         </div>
 
-                        <div class="mb-4">
-                            <label for="instructor" class="block text-gray-700">Instructor</label>
+                        <div class="mb-3">
+                            <label for="instructor" class="form-label">Instructor</label>
                             <input type="text" name="instructor" id="instructor" 
                                    value="{{ old('instructor', $curso->instructor) }}"
-                                   class="w-full border-gray-300 rounded-md shadow-sm" required>
+                                   class="form-control" required>
                         </div>
 
-                        <div class="mb-4">
-                            <label for="descripcion" class="block text-gray-700">Descripción</label>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
                             <textarea name="descripcion" id="descripcion" rows="4" 
-                                      class="w-full border-gray-300 rounded-md shadow-sm" required>{{ old('descripcion', $curso->descripcion) }}</textarea>
+                                      class="form-control" required>{{ old('descripcion', $curso->descripcion) }}</textarea>
                         </div>
 
-                        <div class="flex items-center gap-4">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <div class="d-flex align-items-center gap-3">
+                            <button type="submit" class="btn btn-primary">
                                 Actualizar Curso
                             </button>
                             
-                            <a href="{{ route('cursos.index') }}" class="text-gray-600 hover:text-gray-900">
+                            <a href="{{ route('cursos.index') }}" class="text-secondary text-decoration-none">
                                 Cancelar
                             </a>
                         </div>
