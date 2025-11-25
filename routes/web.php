@@ -9,11 +9,10 @@ use Illuminate\Support\Facades\Route;
 // Página de Inicio (Lista de Cursos)
 Route::get('/', [PublicCursoController::class, 'index'])->name('home');
 
-// Vista de detalle del curso (Pública)
 Route::get('/curso/{curso}', [PublicCursoController::class, 'show'])->name('cursos.show_public');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -23,7 +22,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('cursos', CursoController::class);
 
-    // Ruta para guardar una valoración en un curso específico
     Route::post('/curso/{curso}/valoraciones', [ValoracionController::class, 'store'])
         ->name('valoraciones.store');
 });
