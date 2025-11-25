@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\PublicCursoController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Página de Inicio (Lista de Cursos)
+Route::get('/', [PublicCursoController::class, 'index'])->name('home');
+
+// Vista de detalle del curso (Pública)
+Route::get('/curso/{curso}', [PublicCursoController::class, 'show'])->name('cursos.show_public');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
