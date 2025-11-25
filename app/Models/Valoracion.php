@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Valoracion extends Model
 {
-    protected $table = 'resenas';
+    use HasFactory;
+
+    protected $table = 'valoraciones'; 
+
+    protected $fillable = ['user_id', 'curso_id', 'puntuacion', 'comentario'];
 
     public function user() {
         return $this->belongsTo(User::class);
