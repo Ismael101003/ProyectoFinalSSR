@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PublicCursoController;
+use App\Http\Controllers\ValoracionController;
 use Illuminate\Support\Facades\Route;
 
 // Página de Inicio (Lista de Cursos)
@@ -21,6 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('cursos', CursoController::class);
+
+    // Ruta para guardar una valoración en un curso específico
+    Route::post('/curso/{curso}/valoraciones', [ValoracionController::class, 'store'])
+        ->name('valoraciones.store');
 });
 
 require __DIR__.'/auth.php';
